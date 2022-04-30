@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <Signin /> */}
-      <Login />
+      <Signin />
+      {/* <Login /> */}
       <Footer />
     </>
   );
