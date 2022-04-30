@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -46,11 +46,13 @@ const Login = () => {
             </div>
             {/* create and account button */}
             <div>
-              <p className=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
-                <span className="relative px-2 cursor-pointer  bg-white rounded-md ">
-                  Create an Account
-                </span>
-              </p>
+              <Link to="/signup">
+                <p className=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
+                  <span className="relative px-2 cursor-pointer  bg-white rounded-md ">
+                    Create an Account
+                  </span>
+                </p>
+              </Link>
               <span className=" cursor-pointer hover:text-blue-700 hover:underline decoration-2 ">
                 Forget Password
               </span>

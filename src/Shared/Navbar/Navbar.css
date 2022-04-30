@@ -1,14 +1,6 @@
 :root {
-  --navHeight: 10px;
   --navLinkColor: #000;
   --navLinkColorHover: rgb(14, 0, 214);
-}
-
-.navHeader {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: var(--navHeight) 12%;
 }
 
 .logo {

@@ -1,14 +1,18 @@
 import "./App.css";
 import "../node_modules/flowbite/dist/flowbite.js";
-import Footer from "./Shared/Footer/Footer";
-import Navbar from "./Shared/Navbar/Navbar";
-import Home from "./Pages/Home/Home";
+import { Routes, Route } from "react-router-dom";
+import { Home, Login, Signup } from "./Pages";
+import { Navbar, Footer } from "./Shared";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
       <Footer />
     </>
   );

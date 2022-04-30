@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Signin = () => {
+const Signup = () => {
   return (
     <>
       <div className=" flex justify-center items-center lg:h-[75vh] h-[100%] mt-12">
@@ -60,11 +61,13 @@ const Signin = () => {
             </div>
             {/* create and account button */}
             <div className="mb-3">
-              <p className=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
-                <span className="relative px-2 cursor-pointer  bg-white rounded-md ">
-                  Already have account
-                </span>
-              </p>
+              <Link to="/login">
+                <p className=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
+                  <span className="relative px-2 cursor-pointer  bg-white rounded-md ">
+                    Already have account
+                  </span>
+                </p>
+              </Link>
             </div>
 
             <button
@@ -162,4 +165,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;
