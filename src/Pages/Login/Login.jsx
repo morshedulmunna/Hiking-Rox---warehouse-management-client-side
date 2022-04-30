@@ -1,7 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../../firebase.config";
 
 const Login = () => {
+  const [signInWithGoogle, userGoogle, loading, error] =
+    useSignInWithGoogle(auth);
+
+  // Navigation
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  // When successful Login ==>>
+  useEffect(() => {
+    if (userGoogle) {
+      toast.success("Login Successfull!");
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, userGoogle]);
+
   return (
     <>
       <div className=" flex justify-center items-center lg:h-[75vh] h-[100%] mt-12">
@@ -16,7 +35,7 @@ const Login = () => {
             <div className="grid gap-6 mb-6 lg:grid-cols-2"></div>
             <div className="mb-6">
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Email address
@@ -31,7 +50,7 @@ const Login = () => {
             </div>
             <div className="mb-6">
               <label
-                for="password"
+                htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Password
@@ -70,7 +89,7 @@ const Login = () => {
               </div>
 
               <label
-                for="remember"
+                htmlFor="remember"
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
               >
                 I agree with the terms and conditions
@@ -147,6 +166,7 @@ const Login = () => {
               </svg>
             </button>
             <button
+              onClick={() => signInWithGoogle()}
               type="button"
               className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-5"
             >

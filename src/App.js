@@ -1,4 +1,5 @@
 import "./App.css";
+import { Toaster } from "react-hot-toast";
 import "../node_modules/flowbite/dist/flowbite.js";
 import { Routes, Route } from "react-router-dom";
 import { Home, Login, Signup } from "./Pages";
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
+      <Toaster />
     </>
   );
 }
