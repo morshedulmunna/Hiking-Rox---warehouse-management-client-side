@@ -4,7 +4,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <nav class="bg-white border-gray-200 px-2  sm:px-4 py-4 rounded dark:bg-gray-800">
+      <nav class="bg-white  border-gray-200 px-2  sm:px-4 py-4 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
           <span class="self-center text-2xl font-bold whitespace-nowrap dark:text-white cursor-pointer">
             Flowbite

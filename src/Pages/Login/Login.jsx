@@ -51,6 +51,9 @@ const Login = () => {
                   Create an Account
                 </span>
               </p>
+              <span className=" cursor-pointer hover:text-blue-700 hover:underline decoration-2 ">
+                Forget Password
+              </span>
             </div>
 
             <div class="flex items-start mb-6">
