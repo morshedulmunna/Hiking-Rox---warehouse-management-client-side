@@ -41,7 +41,7 @@ const Navbar = () => {
           {user ? (
             <div div id="navButton" className="flex items-center">
               <img
-                class="h-12 rounded-full cursor-pointer mx-4"
+                className="h-12 rounded-full cursor-pointer mx-4"
                 src={user.photoURL}
                 alt="user photo"
               />

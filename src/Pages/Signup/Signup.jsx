@@ -1,7 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.config";
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  // const [myError, setMyError] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [createUserWithEmailAndPassword, user, , error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+  console.log(user);
+
+  // Navigation
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  // Handle Submit Button
+  const handleCreateUser = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("Password didn't Match!");
+      return;
+    }
+    createUserWithEmailAndPassword(email, password);
+  };
+  // When successful Login ==>>
+  useEffect(() => {
+    if (user) {
+      toast.success("Successfull!");
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user]);
+
   return (
     <>
       <div className=" flex justify-center items-center lg:h-[75vh] h-[100%] mt-12">
@@ -12,16 +46,17 @@ const Signup = () => {
             </h2>
             <p>To Keep connected with us. Please To Create an Account</p>
           </div>
-          <form>
+          <form onSubmit={handleCreateUser}>
             <div className="grid gap-6 mb-6 lg:grid-cols-2"></div>
             <div className="mb-6">
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Email address
               </label>
               <input
+                onChange={(event) => setEmail(event.target.value.toString())}
                 type="email"
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -31,12 +66,13 @@ const Signup = () => {
             </div>
             <div className="mb-6">
               <label
-                for="password"
+                htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Password
               </label>
               <input
+                onChange={(event) => setPassword(event.target.value.toString())}
                 type="password"
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -46,12 +82,15 @@ const Signup = () => {
             </div>
             <div className="mb-6">
               <label
-                for="password"
+                htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Confirm Password
               </label>
               <input
+                onChange={(event) =>
+                  setconfirmPassword(event.target.value.toString())
+                }
                 type="password"
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
