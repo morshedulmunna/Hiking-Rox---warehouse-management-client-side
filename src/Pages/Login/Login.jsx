@@ -13,41 +13,41 @@ const Login = () => {
             <p>Keep connected with us. Please To Create an Account</p>
           </div>
           <form>
-            <div class="grid gap-6 mb-6 lg:grid-cols-2"></div>
-            <div class="mb-6">
+            <div className="grid gap-6 mb-6 lg:grid-cols-2"></div>
+            <div className="mb-6">
               <label
                 for="email"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Email address
               </label>
               <input
                 type="email"
                 id="email"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter your Email"
                 required
               />
             </div>
-            <div class="mb-6">
+            <div className="mb-6">
               <label
                 for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Password
               </label>
               <input
                 type="password"
                 id="password"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Password"
                 required
               />
             </div>
             {/* create and account button */}
             <div>
-              <p class=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
-                <span class="relative px-2 cursor-pointer  bg-white rounded-md ">
+              <p className=" inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg  bg-gradient-to-br from-green-400 to-blue-600 ">
+                <span className="relative px-2 cursor-pointer  bg-white rounded-md ">
                   Create an Account
                 </span>
               </p>
@@ -56,27 +56,27 @@ const Login = () => {
               </span>
             </div>
 
-            <div class="flex items-start mb-6">
-              <div class="flex items-center h-5">
+            <div className="flex items-start mb-6">
+              <div className="flex items-center h-5">
                 <input
                   id="remember"
                   type="checkbox"
                   value=""
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                   required
                 />
               </div>
 
               <label
                 for="remember"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
               >
                 I agree with the terms and conditions
               </label>
             </div>
             <button
               type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-9 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-9 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3"
             >
               Log in
             </button>
@@ -86,10 +86,10 @@ const Login = () => {
           <div className="flex justify-center items-center mt-12">
             <button
               type="button"
-              class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-5"
+              className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-5"
             >
               <svg
-                class="w-4 h-4 m-auto -ml-1"
+                className="w-4 h-4 m-auto -ml-1"
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
@@ -106,10 +106,10 @@ const Login = () => {
             </button>
             <button
               type="button"
-              class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-5"
+              className="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-5"
             >
               <svg
-                class="w-4 h-4 m-auto -ml-1"
+                className="w-4 h-4 m-auto -ml-1"
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
@@ -126,10 +126,10 @@ const Login = () => {
             </button>
             <button
               type="button"
-              class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-5 "
+              className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-5 "
             >
               <svg
-                class="w-4 h-4 m-auto -ml-1"
+                className="w-4 h-4 m-auto -ml-1"
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
@@ -146,10 +146,10 @@ const Login = () => {
             </button>
             <button
               type="button"
-              class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-5"
+              className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-5"
             >
               <svg
-                class="w-4 h-4 m-auto -ml-1"
+                className="w-4 h-4 m-auto -ml-1"
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"

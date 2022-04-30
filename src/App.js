@@ -4,6 +4,7 @@ import Footer from "./Shared/Footer/Footer";
 import Navbar from "./Shared/Navbar/Navbar";
 import Login from "./Pages/Login/Login";
 import Signin from "./Pages/Signin/Signin";
+import Banner from "./Pages/Home/Banner/Banner";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       {/* <Signin /> */}
       {/* <Login /> */}
+      <Banner />
       <Footer />
     </>
   );
