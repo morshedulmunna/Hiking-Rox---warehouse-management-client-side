@@ -1,11 +1,9 @@
 import "./App.css";
+import "../node_modules/flowbite/dist/flowbite.js";
+import Footer from "./Shared/Footer/Footer";
 
 function App() {
-  return (
-    <>
-      <h2>Hello</h2>
-    </>
-  );
+  return <>{/* <Footer /> */}</>;
 }
 
 export default App;
