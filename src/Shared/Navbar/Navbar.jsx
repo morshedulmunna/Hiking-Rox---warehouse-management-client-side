@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./Navbar.css";
 import { Link, Outlet } from "react-router-dom";
@@ -36,24 +37,34 @@ const Navbar = () => {
               </li>
             </ul>
           </nav>
-          <Link id="navButton" to="/login">
-            {user ? (
-              <button
-                onClick={() => signOut(auth)}
-                type="button"
-                className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2  "
-              >
-                Log out
-              </button>
-            ) : (
+
+          {user ? (
+            <div div id="navButton" className="flex items-center">
+              <img
+                class="h-12 rounded-full cursor-pointer mx-4"
+                src={user.photoURL}
+                alt="user photo"
+              />
+              <Link to="/login">
+                <button
+                  onClick={() => signOut(auth)}
+                  type="button"
+                  className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2  "
+                >
+                  Log out
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <Link id="navButton" to="/login">
               <button
                 type="button"
                 className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2  "
               >
                 Log in
               </button>
-            )}
-          </Link>
+            </Link>
+          )}
         </div>
         <Outlet />
       </header>

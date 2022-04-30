@@ -39,7 +39,7 @@
 }
 
 #navButton {
-  padding: 9px 25px;
+  padding: 0px 25px;
   border-radius: 50px;
   transition: all 0.3s ease 0s;
   /* just change order left or right */
