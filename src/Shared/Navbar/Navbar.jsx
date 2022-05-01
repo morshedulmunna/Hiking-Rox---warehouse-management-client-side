@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./Navbar.css";
+import logo from "../../Images/logo.png";
+import userPhoto from "../../Images/user.jpg";
 import { Link, Outlet } from "react-router-dom";
 import ActiveLink from "../../RouterDOM/ActiveLink/ActiveLink";
 import auth from "../../firebase.config";
@@ -9,13 +11,17 @@ import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
+  console.log(user);
 
   return (
     <>
       <header className="flex justify-end items-center px-[10%] py-3">
         {/* <img src="" alt="" /> */}
         <Link className="logo" to="/">
-          <h4> Hiking RoX</h4>
+          <div className="flex justify-center items-center">
+            <img className="h-12 pr-2" src={logo} alt="" />
+            <h4> Hiking RoX</h4>
+          </div>
         </Link>
         <div className="flex items-center">
           <nav id="nav">
@@ -25,6 +31,26 @@ const Navbar = () => {
                   <span>Home</span>
                 </ActiveLink>
               </li>
+              {user && (
+                <>
+                  <li>
+                    <ActiveLink to="/inventory">
+                      <span>Inventory</span>
+                    </ActiveLink>
+                  </li>
+
+                  <li>
+                    <ActiveLink to="/my-item">
+                      <span>My Item</span>
+                    </ActiveLink>
+                  </li>
+                  <li>
+                    <ActiveLink to="/add-product">
+                      <span>Add Product</span>
+                    </ActiveLink>
+                  </li>
+                </>
+              )}
               <li>
                 <ActiveLink to="/about">
                   <span>About</span>
@@ -42,7 +68,7 @@ const Navbar = () => {
             <div div id="navButton" className="flex items-center">
               <img
                 className="h-12 rounded-full cursor-pointer mx-4"
-                src={user.photoURL}
+                src={user.photoURL === null ? userPhoto : user.photoURL}
                 alt="user photo"
               />
               <Link to="/login">

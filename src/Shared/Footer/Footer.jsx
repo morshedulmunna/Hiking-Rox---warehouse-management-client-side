@@ -44,7 +44,7 @@ const Footer = () => {
               <a href="#" className="hover:underline">
                 Hiking RoX™
               </a>
-              . All Rights Reserved.
+              . All Rights Reserved. developer morshedulmunna
             </span>
           </footer>
         </div>
