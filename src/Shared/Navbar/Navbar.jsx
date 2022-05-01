@@ -56,7 +56,7 @@ const Navbar = () => {
                           to="/"
                           class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                         >
-                          <span class="relative text-cyan-800 text-lg font-medium">
+                          <span class="relative text-cyan-800 text-base font-medium">
                             Home
                           </span>
                         </ActiveLink>
@@ -68,7 +68,7 @@ const Navbar = () => {
                               to="/inventory"
                               class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                             >
-                              <span class="relative text-cyan-800 text-lg font-medium">
+                              <span class="relative text-cyan-800 text-base font-medium">
                                 Inventory
                               </span>
                             </ActiveLink>
@@ -78,7 +78,7 @@ const Navbar = () => {
                               to="/item"
                               class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                             >
-                              <span class="relative text-cyan-800 text-lg font-medium">
+                              <span class="relative text-cyan-800 text-base font-medium">
                                 My Item
                               </span>
                             </ActiveLink>
@@ -88,7 +88,7 @@ const Navbar = () => {
                               to="/add-product"
                               class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                             >
-                              <span class="relative text-cyan-800 text-lg font-medium">
+                              <span class="relative text-cyan-800 text-base font-medium">
                                 Add Product
                               </span>
                             </ActiveLink>
@@ -100,7 +100,7 @@ const Navbar = () => {
                           to="/about"
                           class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                         >
-                          <span class="relative text-cyan-800 text-lg font-medium">
+                          <span class="relative text-cyan-800 text-base font-medium">
                             About
                           </span>
                         </ActiveLink>
@@ -110,7 +110,7 @@ const Navbar = () => {
                           to="/blog"
                           class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                         >
-                          <span class="relative text-cyan-800 text-lg font-medium">
+                          <span class="relative text-cyan-800 text-base font-medium">
                             Blog
                           </span>
                         </ActiveLink>
