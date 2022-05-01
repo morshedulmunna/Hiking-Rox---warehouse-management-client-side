@@ -53,6 +53,20 @@ const Banner = () => {
                 alt=""
               />
             </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <img
+                src="https://images.unsplash.com/photo-1542359649-31e03cd4d909?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                alt=""
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <img
+                src="https://images.unsplash.com/photo-1484910292437-025e5d13ce87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1214&q=80"
+                alt=""
+              />
+            </SwiperSlide>
           </Swiper>
         </>
       </>
