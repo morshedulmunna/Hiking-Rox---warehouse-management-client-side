@@ -12,8 +12,6 @@ const Signup = () => {
   const [createUserWithEmailAndPassword, user, , error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-  console.log(user);
-
   // Navigation
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,10 +20,15 @@ const Signup = () => {
   // Handle Submit Button
   const handleCreateUser = (e) => {
     e.preventDefault();
+    if (error) {
+      toast.error("Email Already Signup! Please Login");
+      return;
+    }
     if (password !== confirmPassword) {
       toast.error("Password didn't Match!");
       return;
     }
+
     createUserWithEmailAndPassword(email, password);
   };
   // When successful Login ==>>
@@ -92,7 +95,7 @@ const Signup = () => {
                   setconfirmPassword(event.target.value.toString())
                 }
                 type="password"
-                id="password"
+                id="confirmPassword"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Confirm Password"
                 required

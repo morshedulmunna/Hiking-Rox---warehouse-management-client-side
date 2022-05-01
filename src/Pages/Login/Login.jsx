@@ -1,27 +1,74 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import auth from "../../firebase.config";
 
 const Login = () => {
-  const [signInWithGoogle, userGoogle, loading, error] =
-    useSignInWithGoogle(auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [signInWithEmailAndPassword, user, , error] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, userGoogle] = useSignInWithGoogle(auth);
 
-  // Navigation
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  // Sign in with Email
+  // Submit Login Handler
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(email, password);
+  };
 
-  // When successful Login ==>>
+  // successful Login to Navigate ==>>
   useEffect(() => {
-    if (userGoogle) {
+    if (user || userGoogle) {
       toast.success("Login Successfull!");
       navigate(from, { replace: true });
     }
-  }, [from, navigate, userGoogle]);
+  }, [from, navigate, user, userGoogle]);
+
+  // Error Checking..
+  useEffect(() => {
+    if (error) {
+      console.log(error.code);
+      switch (error.code) {
+        case "auth/wrong-password":
+          toast.error("Password is Wrong! Forget your Password");
+          break;
+        case "auth/too-many-requests":
+          toast.error("Too Many Requests!");
+          break;
+        case "auth/user-not-found":
+          toast.error("User Not Available, Please Sign Up!");
+          break;
+        default:
+          toast.error("Somting is wrong");
+          break;
+      }
+    }
+  }, [error]);
+
+  // Handle Forget Pass
+  const handleForgetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Mail Sent!");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+
+        if (errorCode === "auth/missing-email") {
+          toast.error("Please Enter Email");
+        }
+      });
+  };
 
   return (
     <>
@@ -33,7 +80,7 @@ const Login = () => {
             </h2>
             <p>Keep connected with us. Please To Create an Account</p>
           </div>
-          <form>
+          <form onSubmit={handleLogIn}>
             <div className="grid gap-6 mb-6 lg:grid-cols-2"></div>
             <div className="mb-6">
               <label
@@ -43,6 +90,7 @@ const Login = () => {
                 Email address
               </label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 id="email"
                 name="email"
@@ -59,6 +107,7 @@ const Login = () => {
                 Password
               </label>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 id="password"
                 name="password"
@@ -76,7 +125,10 @@ const Login = () => {
                   </span>
                 </p>
               </Link>
-              <span className=" cursor-pointer hover:text-blue-700 hover:underline decoration-2 ">
+              <span
+                onClick={handleForgetPassword}
+                className=" cursor-pointer hover:text-blue-700 hover:underline decoration-2 "
+              >
                 Forget Password
               </span>
             </div>
