@@ -1,8 +1,11 @@
-import React from "react";
 import Banner from "./Banner/Banner";
 import Product from "./Product/Product";
+import useDataload from "../../Hooks/useDataLoad";
 
 const Home = () => {
+  const [products, setProducts] = useDataload([]);
+  console.log(products);
+
   return (
     <>
       <Banner />
@@ -11,10 +14,9 @@ const Home = () => {
           Latest Product
         </h1>
         <div className=" grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products.slice(1, 4).map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
         </div>
       </div>
     </>

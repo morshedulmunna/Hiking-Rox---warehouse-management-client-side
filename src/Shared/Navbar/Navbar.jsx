@@ -12,7 +12,7 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 sticky top-0 z-10 shadow-lg shadow-cyan-500/20">
       <header>
         <div className="relative z-20 border-b bg-white">
           <div className="px-6 md:px-12 lg:container lg:mx-auto lg:px-6 lg:py-2">
