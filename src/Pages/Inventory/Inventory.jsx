@@ -20,6 +20,12 @@ const Inventory = () => {
                 scope="col"
                 className="px-6 py-3 font-bold underline text-base"
               >
+                ID
+              </th>
+              <th
+                scope="col"
+                className="px-6 py-3 font-bold underline text-base"
+              >
                 Quantity
               </th>
               <th
@@ -41,10 +47,11 @@ const Inventory = () => {
           </thead>
 
           {products.map((pd) => {
-            const { title, price, quantity, sold } = pd;
+            const { title, price, quantity, sold, _id } = pd;
+
             return (
               <>
-                <tbody>
+                <tbody keys={_id}>
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th
                       scope="row"
@@ -52,6 +59,7 @@ const Inventory = () => {
                     >
                       {title}
                     </th>
+                    <td className="px-6 py-4">{_id}</td>
                     <td className="px-6 py-4">{quantity}</td>
                     <td className="px-6 py-4"> {sold} </td>
                     <td className="px-6 py-4"> ${price}</td>

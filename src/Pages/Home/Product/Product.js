@@ -11,7 +11,7 @@ const Product = ({ product }) => {
         </figure>
         <div class="card-body">
           <h2 class="card-title"> {title} </h2>
-          <p> {discription.slice(0, 150)} </p>
+          <p> {discription} </p>
           <div class="card-actions justify-end">
             <Link class="btn btn-primary w-full" to="/inventory:_id">
               <button>Product Details</button>
