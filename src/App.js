@@ -2,7 +2,7 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import "../node_modules/flowbite/dist/flowbite.js";
 import { Routes, Route } from "react-router-dom";
-import { Home, Inventory, Login, Signup } from "./Pages";
+import { Home, Inventory, Login, MyItem, Signup } from "./Pages";
 import { Navbar, Footer } from "./Shared";
 import RequireAuth from "./RouterDOM/RequireAuth";
 
@@ -19,6 +19,14 @@ function App() {
           element={
             <RequireAuth>
               <Inventory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/item"
+          element={
+            <RequireAuth>
+              <MyItem />
             </RequireAuth>
           }
         />

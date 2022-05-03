@@ -64,6 +64,16 @@ const Navbar = () => {
                         <>
                           <li>
                             <ActiveLink
+                              to="/inventory"
+                              className="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
+                            >
+                              <span className="relative text-cyan-800 text-base font-medium">
+                                Inventory
+                              </span>
+                            </ActiveLink>
+                          </li>
+                          <li>
+                            <ActiveLink
                               to="/item"
                               className="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 "
                             >
