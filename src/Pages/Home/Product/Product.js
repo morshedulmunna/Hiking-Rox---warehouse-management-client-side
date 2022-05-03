@@ -13,7 +13,7 @@ const Product = ({ product }) => {
           <h2 class="card-title"> {title} </h2>
           <p> {discription} </p>
           <div class="card-actions justify-end">
-            <Link class="btn btn-primary w-full" to="/inventory:_id">
+            <Link class="btn btn-primary w-full" to="/product">
               <button>Product Details</button>
             </Link>
           </div>
