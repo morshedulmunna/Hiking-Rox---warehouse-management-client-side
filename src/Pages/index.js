@@ -4,3 +4,7 @@ export { default as Signup } from "./Signup/Signup";
 export { default as Inventory } from "./Inventory/Inventory";
 export { default as MyItem } from "./MyItem/MyItem";
 export { default as ItemDetails } from "./ItemDetails/ItemDetails";
+export { default as About } from "./About/About";
+export { default as AddProduct } from "./AddProduct/AddProduct";
+export { default as Blog } from "./Blog/Blog";
+export { default as Error404 } from "./Error404/Error404";

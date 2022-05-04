@@ -2,7 +2,18 @@ import "./App.css";
 import { Toaster } from "react-hot-toast";
 import "../node_modules/flowbite/dist/flowbite.js";
 import { Routes, Route } from "react-router-dom";
-import { Home, Inventory, ItemDetails, Login, MyItem, Signup } from "./Pages";
+import {
+  About,
+  AddProduct,
+  Blog,
+  Error404,
+  Home,
+  Inventory,
+  ItemDetails,
+  Login,
+  MyItem,
+  Signup,
+} from "./Pages";
 import { Navbar, Footer } from "./Shared";
 import RequireAuth from "./RouterDOM/RequireAuth";
 
@@ -14,6 +25,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/inventory"
           element={
@@ -31,13 +45,14 @@ function App() {
           }
         />
         <Route
-          path="/product"
+          path="/product/:id"
           element={
             <RequireAuth>
               <ItemDetails />
             </RequireAuth>
           }
         />
+        <Route path="/*" element={<Error404 />} />
       </Routes>
       <Footer />
       <Toaster />
