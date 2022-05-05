@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../RouterDOM/Loader";
 
 const ItemDetails = () => {
@@ -33,35 +33,17 @@ const ItemDetails = () => {
   // On submit
   const handleStock = (e) => {
     e.preventDefault();
-    // const inputStock = e.target.stock.value;
-    // const newStock = inputStock + quantity;
+    const inputStock = parseInt(e.target.stock.value);
+    const newStock = inputStock + parseInt(quantity);
     const url = `http://localhost:4000/product/${id}`;
     console.log(url);
 
-    const check = {
-      check: 2,
-    };
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(check),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("User added Succesfully");
-        e.target.reset();
-      });
-
-    // axios
-    //   .put(url, check)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => console.log(err));
+    axios
+      .put(url, { newStock })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   if (loading) {
@@ -115,6 +97,13 @@ const ItemDetails = () => {
               value="Add New Stock"
             />
           </form>
+          <Link to="/inventory">
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 float-right lg:mt-[95%] md:mt-[95%] mt-[20%] ">
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Go to Manage Inventory
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
     </>
