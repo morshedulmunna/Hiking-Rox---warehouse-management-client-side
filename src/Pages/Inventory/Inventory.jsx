@@ -1,7 +1,7 @@
 import React from "react";
 import useDataload from "../../Hooks/useDataLoad";
 import { AiFillDelete } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Inventory = () => {
   const [products, setProducts] = useDataload([]);
@@ -14,12 +14,14 @@ const Inventory = () => {
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
       <div className="flex justify-center align-top">
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Add New Item
-        </button>
+        <Link to="/add-product">
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Add New Item
+          </button>
+        </Link>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
