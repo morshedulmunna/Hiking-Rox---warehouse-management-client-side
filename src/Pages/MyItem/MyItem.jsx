@@ -2,7 +2,7 @@ import React from "react";
 import useDataload from "../../Hooks/useDataLoad";
 
 const MyItem = () => {
-  const [products, setProducts] = useDataload([]);
+  const [products] = useDataload([]);
 
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">

@@ -1,27 +1,53 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useSingleData from "../../Hooks/useSingleData";
+import Loader from "../../RouterDOM/Loader";
 
 const ItemDetails = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
-  const [singleProducts, setSingleProducts] = useSingleData({});
-
-  const { image, _id, price, title, supplier, quantity, sold, discription } =
+  const [singleProducts, setSingleProducts] = useState({});
+  const { image, _id, price, title, supplier, quantity, discription } =
     singleProducts;
 
-  const updateStock = (e) => {
-    e.preventDefault();
-    const quantity = e.target.stock.value;
+  // console.log(singleProducts);
 
-    const updateQuantity = { quantity };
-    console.log(updateQuantity);
-    fetch(`http://localhost:4000/product/${id}`, {
+  // Get Data From API
+  useEffect(() => {
+    const url = `http://localhost:4000/product/${id}`;
+    axios
+      .get(url)
+      .then(function (response) {
+        setSingleProducts(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    if (Object.keys(singleProducts).length > 0) {
+      setLoading(false);
+    }
+  }, [id, singleProducts]);
+
+  // On submit
+  const handleStock = (e) => {
+    e.preventDefault();
+    // const inputStock = e.target.stock.value;
+    // const newStock = inputStock + quantity;
+    const url = `http://localhost:4000/product/${id}`;
+    console.log(url);
+
+    const check = {
+      check: 2,
+    };
+
+    fetch(url, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(updateQuantity),
+      body: JSON.stringify(check),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -29,7 +55,18 @@ const ItemDetails = () => {
         alert("User added Succesfully");
         e.target.reset();
       });
+
+    // axios
+    //   .put(url, check)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => console.log(err));
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -62,12 +99,12 @@ const ItemDetails = () => {
         </div>
         <div className="lg:w-[30%] sm:w-[100%]">
           <h2 className="text-3xl font-bold mb-4">Add Stock Item</h2>
-          <form onSubmit={updateStock}>
+          <form onSubmit={handleStock}>
             <input
               type="search"
               id="search"
               name="stock"
-              className="block p-4  w-full  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-lg text-lg"
+              className="block p-4  w-full  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-lg text-lg  "
               placeholder="Input Stock"
               required
             />

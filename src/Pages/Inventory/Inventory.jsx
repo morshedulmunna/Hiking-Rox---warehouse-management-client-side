@@ -1,9 +1,15 @@
 import React from "react";
 import useDataload from "../../Hooks/useDataLoad";
 import { AiFillDelete } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const Inventory = () => {
   const [products, setProducts] = useDataload([]);
+  const navigate = useNavigate();
+
+  const handleView = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
@@ -83,6 +89,7 @@ const Inventory = () => {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button
+                        onClick={() => handleView(_id)}
                         type="button"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm  text-center  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-1 mr-2"
                       >
