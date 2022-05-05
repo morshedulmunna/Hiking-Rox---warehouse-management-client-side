@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useDataload from "../../Hooks/useDataLoad";
 import { AiFillDelete } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../RouterDOM/Loader";
 
 const Inventory = () => {
-  const [products, setProducts] = useDataload([]);
+  const [products] = useDataload([]);
   const navigate = useNavigate();
 
   const handleView = (id) => {
     navigate(`/product/${id}`);
   };
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (Object.keys(products).length > 0) {
+      setLoading(false);
+    }
+  }, [products]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">

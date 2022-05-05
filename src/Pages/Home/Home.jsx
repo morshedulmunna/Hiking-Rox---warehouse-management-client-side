@@ -1,9 +1,22 @@
 import Banner from "./Banner/Banner";
 import Product from "./Product/Product";
 import useDataload from "../../Hooks/useDataLoad";
+import { useEffect, useState } from "react";
+import Loader from "../../RouterDOM/Loader";
 
 const Home = () => {
-  const [products, setProducts] = useDataload([]);
+  const [products] = useDataload([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (Object.keys(products).length > 0) {
+      setLoading(false);
+    }
+  }, [products]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

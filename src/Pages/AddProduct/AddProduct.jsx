@@ -1,8 +1,12 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.config";
 
 const AddProduct = () => {
+  const [user] = useAuthState(auth);
+
   const addNewProduct = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -13,6 +17,8 @@ const AddProduct = () => {
     const supplier = e.target.supplier.value;
     const supplierInfo = e.target.suplier_details.value;
 
+    const email = user.email;
+
     const newProduct = {
       title,
       discription,
@@ -21,6 +27,7 @@ const AddProduct = () => {
       quantity,
       supplier,
       supplierInfo,
+      email,
     };
     console.log(newProduct);
 
