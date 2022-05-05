@@ -55,7 +55,7 @@ function App() {
         <Route path="/*" element={<Error404 />} />
       </Routes>
       <Footer />
-      <Toaster />
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 }
