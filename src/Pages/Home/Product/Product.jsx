@@ -1,13 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  // const navigate = useNavigate();
   const { title, image, discription, _id } = product;
 
-  // const showDetails = () => {
-  //   navigate("/product/" + _id);
-  // };
   return (
     <>
       <div className="card w-96 mt-12 h-[100%] ">
@@ -19,7 +15,7 @@ const Product = ({ product }) => {
           <p> {discription} </p>
           <div className="card-actions justify-end">
             <Link className="btn btn-primary w-full" to={`/product/${_id}`}>
-              <button>Product Details</button>
+              <button className="text-lg">Product Details</button>
             </Link>
           </div>
         </div>
