@@ -6,14 +6,14 @@ const Product = ({ product }) => {
 
   return (
     <>
-      <div class="card w-96 bg-base-100 shadow-xl h-[90%] mt-12">
+      <div className="card w-96 bg-base-100 shadow-xl h-[90%] mt-12">
         <figure>
           <img className="object-cover" src={image} alt="Shoes" />
         </figure>
-        <div class="card-body">
-          <h2 class="card-title"> {title.slice(0, 30)} </h2>
+        <div className="card-body">
+          <h2 className="card-title"> {title.slice(0, 30)} </h2>
           <p> {discription.slice(0, 100)} </p>
-          <div class="card-actions justify-end">
+          <div className="card-actions justify-end">
             <Link className="btn btn-primary w-full" to={`/product/${_id}`}>
               <button className="text-lg">Product Details</button>
             </Link>

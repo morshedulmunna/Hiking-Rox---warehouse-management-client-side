@@ -86,7 +86,7 @@ const ItemDetails = () => {
           {quantity === 0 ? (
             <button
               type="button"
-              class="focus:outline-none text-white bg-red-700  focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 cursor-default   float-right w-auto"
+              className="focus:outline-none text-white bg-red-700  focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 cursor-default   float-right w-auto"
             >
               Stock Out
             </button>
