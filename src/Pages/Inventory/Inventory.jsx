@@ -1,28 +1,52 @@
 import React, { useEffect, useState } from "react";
 import useDataload from "../../Hooks/useDataLoad";
-import { AiFillDelete } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../RouterDOM/Loader";
+import axios from "axios";
+import TabileData from "./TabileData";
 
 const Inventory = () => {
-  const [products] = useDataload([]);
+  const [products, setProducts] = useDataload([]);
   const navigate = useNavigate();
 
   const handleView = (id) => {
     navigate(`/product/${id}`);
   };
 
+  // Loading Spinner
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (Object.keys(products).length > 0) {
       setLoading(false);
     }
   }, [products]);
 
+  // Loading ===>
   if (loading) {
     return <Loader />;
   }
+
+  // Delete Method
+  const handleDeleteProduct = (id) => {
+    const proceed = window.confirm({});
+    if (proceed) {
+      const url = `http://localhost:4000/product/${id}`;
+      axios
+        .delete(url)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            const remainng = products.filter((pd) => pd._id !== id);
+            console.log(remainng);
+
+            setProducts(remainng);
+          }
+        })
+
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
@@ -76,46 +100,16 @@ const Inventory = () => {
             </tr>
           </thead>
 
-          {products.map((pd) => {
-            const { title, price, quantity, sold, _id } = pd;
-
-            return (
-              <>
-                <tbody keys={_id}>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                    >
-                      {title}
-                    </th>
-                    <td className="px-6 py-4">{_id}</td>
-                    <td className="px-6 py-4">{quantity}</td>
-                    <td className="px-6 py-4"> {sold} </td>
-                    <td className="px-6 py-4"> ${price}</td>
-
-                    <td className="px-6 py-4 text-right">
-                      <button
-                        type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg  px-1 py-1 text-2xl mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                      >
-                        <AiFillDelete />
-                      </button>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => handleView(_id)}
-                        type="button"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm  text-center  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-1 mr-2"
-                      >
-                        View Item
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </>
-            );
-          })}
+          <tbody>
+            {products.map((pd) => (
+              <TabileData
+                key={pd._id}
+                pd={pd}
+                handleDeleteProduct={handleDeleteProduct}
+                handleView={handleView}
+              />
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

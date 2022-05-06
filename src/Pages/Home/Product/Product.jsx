@@ -12,7 +12,7 @@ const Product = ({ product }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title"> {title} </h2>
-          <p> {discription} </p>
+          <p> {discription.slice(0, 200)} </p>
           <div className="card-actions justify-end">
             <Link className="btn btn-primary w-full" to={`/product/${_id}`}>
               <button className="text-lg">Product Details</button>

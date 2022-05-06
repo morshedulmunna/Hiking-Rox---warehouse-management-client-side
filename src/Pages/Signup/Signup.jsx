@@ -6,18 +6,17 @@ import auth from "../../firebase.config";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
-  // const [myError, setMyError] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-  // Navigation
+  // Navigation=================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  // Handle Submit Button
+  // Handle Submit Button ===========>>>>>>>>>>>>>>>>>>>>>>>
   const handleCreateUser = (e) => {
     e.preventDefault();
     if (error) {
@@ -28,10 +27,10 @@ const Signup = () => {
       toast.error("Password didn't Match!");
       return;
     }
-
     createUserWithEmailAndPassword(email, password);
   };
-  // When successful Login ==>>
+
+  // When successful Login =======================================>>
   useEffect(() => {
     if (user) {
       toast.success("Successfull!");

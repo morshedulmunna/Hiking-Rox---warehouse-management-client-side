@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
@@ -13,7 +14,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, userGoogle] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+
+  //
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,11 +31,21 @@ const Login = () => {
 
   // successful Login to Navigate ==>>
   useEffect(() => {
-    if (user || userGoogle) {
+    if (user || googleUser) {
       toast.success("Login Successfull!");
       navigate(from, { replace: true });
     }
-  }, [from, navigate, user, userGoogle]);
+  }, [from, navigate, user, googleUser]);
+
+  //   // Post Emmail Token to server
+  // if (user) {
+  //   const url = `http://localhost:4000/login`;
+
+  //   axios
+  //     .post(url)
+  //     .then((res) => {})
+  //     .catch((err) => {});
+  // }
 
   // Error Checking..
   useEffect(() => {

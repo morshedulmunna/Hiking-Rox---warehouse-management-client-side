@@ -7,6 +7,7 @@ import ActiveLink from "../../RouterDOM/ActiveLink/ActiveLink";
 import auth from "../../firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -129,19 +130,22 @@ const Navbar = () => {
                             alt="user photo"
                           />
                           <Link
-                            onClick={() => signOut(auth)}
-                            to="login"
+                            onClick={() => {
+                              signOut(auth);
+                              toast.warning("Log Out Successfull!");
+                            }}
+                            to="/login"
                             className="block px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 text-center text-white"
                           >
-                            Log out
+                            <button> Log out</button>
                           </Link>
                         </div>
                       ) : (
                         <Link
-                          to="login"
+                          to="/login"
                           className="block px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 text-center text-white"
                         >
-                          Log in
+                          <button> Log in</button>
                         </Link>
                       )}
                     </div>
