@@ -101,7 +101,7 @@ const ItemDetails = () => {
             </button>
           )}
           <img
-            className="lg:w-[50%] sm:w-[100%] md:w-[100%] mx-auto"
+            className="lg:w-[30%] sm:w-[50%] md:w-[50%] w-full mx-auto"
             src={image}
             alt=""
           />
@@ -112,7 +112,7 @@ const ItemDetails = () => {
             <p className="font-bold text-lg"> ${price} </p>
           </div>
           <h1 className="text-2xl font font-bold mb-3"> {title} </h1>
-          <p>{discription}</p>
+          <p>{discription.slice(0, 550)}</p>
           <div className="flex justify-between items-center mt-5 mb-1">
             <h4 className="font-bold ">Supplier: {supplier}</h4>
             <h4 className="font-bold text-lg border-2 border-cyan-600 p-2 rounded-md">
