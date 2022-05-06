@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../RouterDOM/Loader";
 import axios from "axios";
 import TabileData from "./TabileData";
+import Swal from "sweetalert2";
 
 const Inventory = () => {
   const [products, setProducts] = useDataload([]);
@@ -28,24 +29,33 @@ const Inventory = () => {
 
   // Delete Method
   const handleDeleteProduct = (id) => {
-    const proceed = window.confirm({});
-    if (proceed) {
-      const url = `http://localhost:4000/product/${id}`;
-      axios
-        .delete(url)
-        .then((res) => {
-          if (res.data.deletedCount > 0) {
-            const remainng = products.filter((pd) => pd._id !== id);
-            console.log(remainng);
+    const url = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
 
-            setProducts(remainng);
-          }
-        })
-
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(url)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remainng = products.filter((pd) => pd._id !== id);
+              console.log(remainng);
+              setProducts(remainng);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
 
   return (

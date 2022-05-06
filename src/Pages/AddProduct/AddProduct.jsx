@@ -29,7 +29,7 @@ const AddProduct = () => {
       supplierInfo,
     };
 
-    const url = `http://localhost:4000/products`;
+    const url = `https://evening-escarpment-14046.herokuapp.com/products`;
     axios
       .post(url, newProduct)
       .then((res) => {
