@@ -3,6 +3,7 @@ import Product from "./Product/Product";
 import useDataload from "../../Hooks/useDataLoad";
 import { useEffect, useState } from "react";
 import Loader from "../../RouterDOM/Loader";
+import HikingGallery from "./HikingGallery/HikingGallery";
 
 const Home = () => {
   const [products] = useDataload([]);
@@ -30,6 +31,7 @@ const Home = () => {
             <Product key={product._id} product={product} />
           ))}
         </div>
+        <HikingGallery />
       </div>
     </>
   );
