@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <div className="lg:container md:container sm:container mx-auto">
+      <div className="lg:container md:container sm:container mx-auto ">
         <h1 className="mt-12 ml-4 lg:ml-0 text-4xl font-bold">
           Latest Product
         </h1>
