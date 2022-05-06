@@ -1,7 +1,11 @@
 import React from "react";
 
 const HikingGallery = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h3>New Section</h3>
+    </div>
+  );
 };
 
 export default HikingGallery;
