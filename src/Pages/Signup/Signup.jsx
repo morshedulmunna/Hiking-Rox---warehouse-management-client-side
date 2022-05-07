@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.config";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, cuser, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [user] = useAuthState(auth);
 
   // Navigation=================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const navigate = useNavigate();
@@ -30,13 +34,28 @@ const Signup = () => {
     createUserWithEmailAndPassword(email, password);
   };
 
-  // When successful Login =======================================>>
+  // When successful Create and Account =============================>>
   useEffect(() => {
-    if (user) {
-      toast.success("Successfull!");
-      navigate(from, { replace: true });
+    if (cuser) {
+      const url = `https://evening-escarpment-14046.herokuapp.com/login`;
+
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: user?.email,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("accessToken", data.token);
+          toast.success("Login Successfull!");
+          navigate(from, { replace: true });
+        });
     }
-  }, [from, navigate, user]);
+  }, [from, navigate, cuser, user]);
 
   return (
     <>
