@@ -29,7 +29,7 @@ const Inventory = () => {
 
   // Delete Method
   const handleDeleteProduct = (id) => {
-    const url = `http://localhost:4000/product/${id}`;
+    const url = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
 
     Swal.fire({
       title: "Are you sure?",

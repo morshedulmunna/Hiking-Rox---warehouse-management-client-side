@@ -13,7 +13,7 @@ const MyItem = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:4000/products/myitem`;
+    const url = `https://evening-escarpment-14046.herokuapp.com/products/myitem`;
     fetch(url, {
       headers: {
         authorization: `${user?.email} ${localStorage.getItem("accessToken")}`,
@@ -37,9 +37,8 @@ const MyItem = () => {
 
   // Loading ===>
   if (loading) {
-    return <Loader />;
+    <Loader />;
   }
-
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
       <p className="ml-5 font-bold text-3xl text-fuchsia-600">

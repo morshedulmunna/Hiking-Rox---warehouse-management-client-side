@@ -35,7 +35,7 @@ const AddProduct = () => {
     // console.log(newProduct);
 
     // Post For Product Item ===>>>
-    const url = `http://localhost:4000/products`;
+    const url = `https://evening-escarpment-14046.herokuapp.com/products`;
     fetch(url, {
       method: "POST",
       body: JSON.stringify(newProduct),
