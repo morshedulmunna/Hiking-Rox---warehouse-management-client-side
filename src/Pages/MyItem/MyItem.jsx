@@ -9,7 +9,7 @@ const MyItem = () => {
   console.log(myItem);
 
   useEffect(() => {
-    const url = `https://evening-escarpment-14046.herokuapp.com/products/myitem`;
+    const url = `http://localhost:4000/products/myitem`;
     fetch(url, {
       headers: {
         authorization: `${user?.email} ${localStorage.getItem("accessToken")}`,
@@ -20,6 +20,7 @@ const MyItem = () => {
   }, [user?.email]);
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
+      <p>hello {myItem.length} </p>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

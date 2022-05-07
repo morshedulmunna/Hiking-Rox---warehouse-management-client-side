@@ -16,7 +16,7 @@ const ItemDetails = () => {
 
   // Get Data From API
   useEffect(() => {
-    const url = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
+    const url = `http://localhost:4000/product/${id}`;
     axios
       .get(url)
       .then(function (response) {
@@ -42,7 +42,7 @@ const ItemDetails = () => {
 
     const newStock = inputStock + parseInt(quantity);
     const newSold = parseInt(sold);
-    const url = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
+    const url = `http://localhost:4000/product/${id}`;
 
     axios
       .put(url, { newStock, newSold })
@@ -60,7 +60,7 @@ const ItemDetails = () => {
     const newStock = parseInt(quantity) - 1;
     const newSold = parseInt(sold) + 1;
 
-    const url = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
+    const url = `http://localhost:4000/product/${id}`;
 
     if (newStock < 0) {
       return toast.error(`Stock Out! Please Add New Product`);

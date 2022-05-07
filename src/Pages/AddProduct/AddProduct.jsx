@@ -32,13 +32,13 @@ const AddProduct = () => {
       supplierInfo,
       email,
     };
+    console.log(newProduct);
+
     // Post For Product Item ===>>>
-    const url = `https://evening-escarpment-14046.herokuapp.com/products`;
+    const url = `http://localhost:4000/products`;
     fetch(url, {
       method: "POST",
-      body: JSON.stringify({
-        newProduct,
-      }),
+      body: JSON.stringify(newProduct),
       headers: {
         authorization: `${user?.email} ${localStorage.getItem("accessToken")}`,
         "Content-type": "application/json; charset=UTF-8",
@@ -47,7 +47,7 @@ const AddProduct = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        e.target.reset();
+        // e.target.reset();
         toast.success("Successfully Added Your Product!!");
       });
   };
