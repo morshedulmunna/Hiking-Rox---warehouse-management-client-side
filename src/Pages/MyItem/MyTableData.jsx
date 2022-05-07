@@ -1,6 +1,7 @@
 import React from "react";
+import { AiFillDelete } from "react-icons/ai";
 
-const MyTableData = ({ item, handleView }) => {
+const MyTableData = ({ item, handleView, handleDeleteProduct }) => {
   const { title, price, quantity, sold, _id } = item;
   //   console.log(item);
   return (
@@ -15,6 +16,15 @@ const MyTableData = ({ item, handleView }) => {
       <td className="px-6 py-4">{quantity}</td>
       <td className="px-6 py-4"> {sold} </td>
       <td className="px-6 py-4"> ${price}</td>
+      <td className="px-6 py-4 text-right">
+        <button
+          onClick={() => handleDeleteProduct(_id)}
+          type="button"
+          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg  px-1 py-1 text-2xl mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        >
+          <AiFillDelete />
+        </button>
+      </td>
 
       <td className="px-6 py-4 text-right">
         <button

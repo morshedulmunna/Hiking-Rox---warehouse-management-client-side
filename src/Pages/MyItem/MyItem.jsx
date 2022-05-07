@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.config";
 import Loader from "../../RouterDOM/Loader";
 import MyTableData from "./MyTableData";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyItem = () => {
   const [myItem, setMyItem] = useState([]);
@@ -39,6 +41,37 @@ const MyItem = () => {
   if (loading) {
     <Loader />;
   }
+
+  // Delete Method
+  const handleDeleteProduct = (id) => {
+    const url2 = `https://evening-escarpment-14046.herokuapp.com/product/${id}`;
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(url2)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const remainng = myItem.filter((pd) => pd._id !== id);
+              console.log(remainng);
+              setMyItem(remainng);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  };
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
       <p className="ml-5 font-bold text-3xl text-fuchsia-600">
@@ -71,7 +104,12 @@ const MyItem = () => {
 
           <tbody>
             {myItem?.map((item) => (
-              <MyTableData key={item._id} item={item} handleView={handleView} />
+              <MyTableData
+                key={item._id}
+                item={item}
+                handleView={handleView}
+                handleDeleteProduct={handleDeleteProduct}
+              />
             ))}
           </tbody>
         </table>
