@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+  useAuthState,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -12,11 +13,12 @@ import auth from "../../firebase.config";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, euser, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
 
   //
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,21 +33,29 @@ const Login = () => {
 
   // successful Login to Navigate ==>>
   useEffect(() => {
-    if (user || googleUser) {
-      toast.success("Login Successfull!");
-      navigate(from, { replace: true });
+    if (euser || googleUser) {
+      const url = `https://evening-escarpment-14046.herokuapp.com/login`;
+
+      // console.log(user?.email);
+
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: user?.email,
+        }),
+
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("accessToken", data.token);
+          toast.success("Login Successfull!");
+          navigate(from, { replace: true });
+        });
     }
-  }, [from, navigate, user, googleUser]);
-
-  //   // Post Emmail Token to server
-  // if (user) {
-  //   const url = `https://evening-escarpment-14046.herokuapp.com/login`;
-
-  //   axios
-  //     .post(url)
-  //     .then((res) => {})
-  //     .catch((err) => {});
-  // }
+  }, [from, navigate, euser, googleUser, user]);
 
   // Error Checking..
   useEffect(() => {

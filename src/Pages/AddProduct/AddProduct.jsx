@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.config";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import auth from "../../firebase.config";
 
 const AddProduct = () => {
-  // const [user] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const addNewProduct = (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const AddProduct = () => {
     const supplier = e.target.supplier.value;
     const sold = e.target.sold.value;
     const supplierInfo = e.target.suplier_details.value;
+    const email = user.email;
 
     const newProduct = {
       title,
@@ -27,17 +30,25 @@ const AddProduct = () => {
       supplier,
       sold,
       supplierInfo,
+      email,
     };
-
+    // Post For Product Item ===>>>
     const url = `https://evening-escarpment-14046.herokuapp.com/products`;
-    axios
-      .post(url, newProduct)
-      .then((res) => {
-        toast.success(`Successfully Added New Product !!`);
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        newProduct,
+      }),
+      headers: {
+        authorization: `${user?.email} ${localStorage.getItem("accessToken")}`,
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
         e.target.reset();
-      })
-      .catch((err) => {
-        toast.error(`Server Site Error!!`);
+        toast.success("Successfully Added Your Product!!");
       });
   };
 
@@ -177,8 +188,8 @@ const AddProduct = () => {
           </div>
           <input
             type="submit"
-            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 mt-4 w-full px-5 py-2.5 cursor-pointer text-base"
-            value="Add New Stock"
+            className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden font-medium  rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500  dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 mt-4 w-full px-5 py-2.5 cursor-pointer text-base text-white"
+            value="Add New Product"
           />
         </form>
       </div>

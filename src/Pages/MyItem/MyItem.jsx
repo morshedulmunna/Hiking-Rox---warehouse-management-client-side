@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.config";
 
 const MyItem = () => {
+  const [myItem, setMyItem] = useState([]);
+  const [user] = useAuthState(auth);
+
+  console.log(myItem);
+
+  useEffect(() => {
+    const url = `https://evening-escarpment-14046.herokuapp.com/products/myitem`;
+    fetch(url, {
+      headers: {
+        authorization: `${user?.email} ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setMyItem(data));
+  }, [user?.email]);
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
