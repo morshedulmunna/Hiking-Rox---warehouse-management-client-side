@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.config";
+import Loader from "../../RouterDOM/Loader";
+import MyTableData from "./MyTableData";
 
 const MyItem = () => {
   const [myItem, setMyItem] = useState([]);
+  // console.log(myItem);
   const [user] = useAuthState(auth);
 
-  console.log(myItem);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `http://localhost:4000/products/myitem`;
@@ -18,9 +22,29 @@ const MyItem = () => {
       .then((res) => res.json())
       .then((data) => setMyItem(data));
   }, [user?.email]);
+
+  const handleView = (id) => {
+    navigate(`/product/${id}`);
+  };
+
+  // Loading Spinner
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (Object.keys(myItem).length > 0) {
+      setLoading(false);
+    }
+  }, [myItem]);
+
+  // Loading ===>
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div className="lg:container md:container container mx-auto mt-12 ">
-      <p>hello {myItem.length} </p>
+      <p className="ml-5 font-bold text-3xl text-fuchsia-600">
+        Total Item: {myItem.length}
+      </p>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -46,7 +70,11 @@ const MyItem = () => {
             </tr>
           </thead>
 
-          <tbody></tbody>
+          <tbody>
+            {myItem?.map((item) => (
+              <MyTableData key={item._id} item={item} handleView={handleView} />
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

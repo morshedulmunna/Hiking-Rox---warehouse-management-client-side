@@ -32,7 +32,7 @@ const AddProduct = () => {
       supplierInfo,
       email,
     };
-    console.log(newProduct);
+    // console.log(newProduct);
 
     // Post For Product Item ===>>>
     const url = `http://localhost:4000/products`;
@@ -46,8 +46,8 @@ const AddProduct = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        // e.target.reset();
+        // console.log(data);
+        e.target.reset();
         toast.success("Successfully Added Your Product!!");
       });
   };

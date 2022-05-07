@@ -1,9 +1,8 @@
 import React from "react";
-import { AiFillDelete } from "react-icons/ai";
 
-const TabileData = ({ pd, handleView, handleDeleteProduct }) => {
-  // console.log(pd);
-  const { title, price, quantity, sold, _id } = pd;
+const MyTableData = ({ item, handleView }) => {
+  const { title, price, quantity, sold, _id } = item;
+  //   console.log(item);
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <th
@@ -19,15 +18,6 @@ const TabileData = ({ pd, handleView, handleDeleteProduct }) => {
 
       <td className="px-6 py-4 text-right">
         <button
-          onClick={() => handleDeleteProduct(_id)}
-          type="button"
-          className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg  px-1 py-1 text-2xl mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-        >
-          <AiFillDelete />
-        </button>
-      </td>
-      <td className="px-6 py-4 text-right">
-        <button
           onClick={() => handleView(_id)}
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm  text-center  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-4 py-1 mr-2"
@@ -39,4 +29,4 @@ const TabileData = ({ pd, handleView, handleDeleteProduct }) => {
   );
 };
 
-export default TabileData;
+export default MyTableData;
