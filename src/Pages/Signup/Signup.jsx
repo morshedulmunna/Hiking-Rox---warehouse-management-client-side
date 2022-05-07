@@ -34,6 +34,13 @@ const Signup = () => {
     createUserWithEmailAndPassword(email, password);
   };
 
+  // useEffect(() => {
+  //   if (cuser) {
+  //     toast.success("Login Successfull!");
+  //     navigate(from, { replace: true });
+  //   }
+  // }, [cuser, from, navigate]);
+
   // When successful Create and Account =============================>>
   useEffect(() => {
     if (cuser) {
@@ -51,9 +58,9 @@ const Signup = () => {
         .then((response) => response.json())
         .then((data) => {
           localStorage.setItem("accessToken", data.token);
-          toast.success("Login Successfull!");
-          navigate(from, { replace: true });
         });
+      toast.success("Login Successfull!");
+      navigate(from, { replace: true });
     }
   }, [from, navigate, cuser, user]);
 
