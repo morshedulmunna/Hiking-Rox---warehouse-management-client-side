@@ -3,7 +3,6 @@ import { Toaster } from "react-hot-toast";
 import "../node_modules/flowbite/dist/flowbite.js";
 import { Routes, Route } from "react-router-dom";
 import {
-  About,
   AddProduct,
   Blog,
   Error404,
@@ -27,7 +26,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/blog" element={<Blog />} />
 
-        <Route path="/about" element={<About />} />
         <Route
           path="/inventory"
           element={
