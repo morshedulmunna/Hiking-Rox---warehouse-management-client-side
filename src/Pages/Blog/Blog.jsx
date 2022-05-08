@@ -1,9 +1,9 @@
 import React from "react";
-
+import NodeJs from "./NodeJs";
 const Blog = () => {
   return (
-    <div>
-      <h1>blog</h1>
+    <div className="lg:container md:container container mx-auto px-12 mt-12 mb-12">
+      <NodeJs />
     </div>
   );
 };
